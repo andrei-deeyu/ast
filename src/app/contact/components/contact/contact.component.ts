@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./contact.component.scss']
 })
 export class ContactComponent {
+  isLoggedIn = false;
 
+  ngOnInit() {
+    if(localStorage.getItem('token')) this.isLoggedIn = true;
+  }
 }

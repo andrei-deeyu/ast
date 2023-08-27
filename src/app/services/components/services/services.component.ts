@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./services.component.scss']
 })
 export class ServicesComponent {
+  isLoggedIn = false;
 
+  ngOnInit() {
+    if(localStorage.getItem('token')) this.isLoggedIn = true;
+  }
 }

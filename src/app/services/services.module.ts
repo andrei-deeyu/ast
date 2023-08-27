@@ -11,7 +11,10 @@ import { RouterModule } from '@angular/router';
   imports: [
     CommonModule,
     RouterModule.forChild([
-      { path: 'services', component: ServicesComponent }
+      {
+        path: 'services',
+        component: ServicesComponent,
+      }
     ])
   ]
 })

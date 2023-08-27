@@ -1,1 +1,6 @@
-<p>services works!</p>
+<ng-container *ngIf="isLoggedIn; else visitor">
+  <h2>Services</h2>
+</ng-container>
+<ng-template #visitor>
+  <h3>You must be logged in as a user to see this page</h3>
+</ng-template>

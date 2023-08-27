@@ -1,0 +1,12 @@
+<h2>Signup</h2>
+
+<input [(ngModel)]="username" placeholder="username" type="text">
+<input [(ngModel)]="password" placeholder="password" type="password">
+<input [(ngModel)]="admin" type="checkbox" id="admin">
+<label for="admin">
+  make me admin
+</label>
+<br>
+<button (click)="signup()">signup</button>
+
+<div *ngIf="alertMessage">{{ alertMessage}}</div>

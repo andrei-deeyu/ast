@@ -1,1 +1,22 @@
-<p>home works!</p>
+<div>
+  <div class="navbar">
+    <div>
+      <button (click)="router.navigate(['/services'])">Services</button>
+      <button (click)="router.navigate(['/contact'])">Contact</button>
+    </div>
+    <ng-container *ngIf="!isLoggedIn; else loggedIn">
+      <div>
+        <button (click)="router.navigate(['/signup'])">Signup</button>
+        <button (click)="router.navigate(['/login'])">Login</button>
+      </div>
+    </ng-container>
+    <ng-template #loggedIn>
+      <div>
+        <button (click)="logout()">Logout</button>
+      </div>
+    </ng-template>
+  </div>
+
+  <h1>Home page</h1>
+  <p>Lorem ipsum dolor sit amet</p>
+</div>
