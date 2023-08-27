@@ -1,6 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { AuthServiceService } from 'src/app/shared/services/auth-service.service';
 
 @Component({
   selector: 'app-signup',
@@ -14,21 +13,14 @@ export class SignupComponent {
   admin = false;
 
   constructor(
-    private http: HttpClient,
-    private router: Router
+    private service: AuthServiceService
   ) {}
 
+
   signup() {
-    this.http.post('/api/signup', {
-      username: this.username,
-      password: this.password,
-      admin: this.admin
-    }).subscribe(res => {
-      console.log(res);
-      this.alertMessage = 'Signed up successfully';
-      setTimeout(() => {
-        this.router.navigate(['/login']);
-      }, 3000);
+    this.service.signup(this.username, this.password, this.admin)
+    .subscribe(res => {
+      if(res) this.alertMessage = 'Signed up successfully';
     })
   }
 }

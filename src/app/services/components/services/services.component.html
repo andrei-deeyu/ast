@@ -1,5 +1,27 @@
 <ng-container *ngIf="isLoggedIn; else visitor">
   <h2>Services</h2>
+  <button *ngIf="isAdmin" (click)="toggleEditing()">
+    <span *ngIf="servicesDesc !== 'Write something on this page'; else addSomething">{{ editing ? 'cancel' : 'edit' }}</span>
+    <ng-template #addSomething>
+      <span>{{ editing ? 'cancel' : 'add' }}</span>
+    </ng-template>
+  </button>
+
+  <div *ngIf="!editing">
+    <img *ngIf="img" [src]="img">
+    <p>{{ servicesDesc }}</p>
+  </div>
+
+  <div *ngIf="isAdmin && editing" class="editing">
+    <div>
+      <img *ngIf="img" [src]="img" [class.editingImage]="editing">
+      <br>
+      <input type="file" (change)="selectFile($event)"/>
+      <br>
+      <textarea [(ngModel)]="servicesDesc" type="text" rows="4" placeholder="Scrie descrierea serviciilor prestate"></textarea>
+    </div>
+    <button (click)="putService()">Submit</button>
+  </div>
 </ng-container>
 <ng-template #visitor>
   <h3>You must be logged in as a user to see this page</h3>

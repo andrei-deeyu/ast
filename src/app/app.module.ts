@@ -8,6 +8,7 @@ import { ServicesModule } from './services/services.module';
 import { CoreModule } from './core/core.module';
 import { MockBackendInterceptor } from './mock-backend';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { SharedModule } from './shared/shared.module';
 
 
 @NgModule({
@@ -17,10 +18,10 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
   imports: [
     BrowserModule,
     CoreModule,
+    SharedModule,
     AppRoutingModule,
     ContactModule,
     ServicesModule,
-
   ],
   providers: [
     {

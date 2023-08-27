@@ -1,6 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { AuthServiceService } from 'src/app/shared/services/auth-service.service';
 
 @Component({
   selector: 'app-login',
@@ -12,20 +11,12 @@ export class LoginComponent {
   username = '';
   password = '';
 
-  constructor(
-    private http: HttpClient,
-    private router: Router
-  ) {}
+  constructor(private service: AuthServiceService) {}
 
   login() {
-    this.http.post('/api/login', {
-      username: this.username,
-      password: this.password
-    }).subscribe(( res:any ) => {
-      if(!res) return this.alertMessage = 'user not found';
-
-      localStorage.setItem('token', res.token);
-      return this.router.navigate([''])
-    })
+    this.service.login(this.username, this.password)
+    .subscribe(res => {
+      if(!res) this.alertMessage = 'user not found';
+    });
   }
 }
